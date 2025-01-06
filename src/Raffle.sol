@@ -58,7 +58,7 @@ contract Raffle is VRFConsumerBaseV2Plus{
     uint256 private i_interval;
     uint256 private s_lastTimeStamp;
     address payable[] private s_players;
-    RaffleState private s_raffleState;
+    RaffleState private s_raffleState;  //start as open
     address private s_recentWinner;
     
 
@@ -190,5 +190,15 @@ contract Raffle is VRFConsumerBaseV2Plus{
         return s_players.length;
     } 
 
-    
+    function getRaffleState() external view returns(RaffleState){
+        return s_raffleState;
+    }
+
+    function getRecentWinner() external view returns(address){
+        return s_recentWinner;
+    }  
+
+    function getInterval() external view returns(uint256){
+        return i_interval;
+    }
 }
