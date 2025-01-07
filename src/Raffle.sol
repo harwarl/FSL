@@ -174,7 +174,7 @@ contract Raffle is VRFConsumerBaseV2Plus{
         s_players = new address payable[](0);
         emit WinnerPicked(s_recentWinner);
 
-        (bool success, ) = recentWinner.call{value: address(this).balance}("");
+        (bool success, ) = recentWinner.call{value: address(this).balance}(" ");
         if(!success){
             revert Raffle__TransferFailed();
         }
@@ -204,5 +204,9 @@ contract Raffle is VRFConsumerBaseV2Plus{
 
     function getPlayer(uint256 indexOfPlayer) external view returns(address){
         return s_players[indexOfPlayer];
+    }
+
+    function getLastTimeStamp() external view returns(uint256){
+        return s_lastTimeStamp;
     }
 }
